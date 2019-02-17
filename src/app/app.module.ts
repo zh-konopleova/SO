@@ -7,6 +7,7 @@ import { AppHeaderComponent } from './app-header/app-header.component';
 import { QuestionListComponent } from './question-list/question-list.component';
 import { AuthorizationComponent } from './authorization/authorization.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { QuestionComponent } from './question/question.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { RegistrationComponent } from './registration/registration.component';
     AppHeaderComponent,
     QuestionListComponent,
     AuthorizationComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    QuestionComponent
   ],
   imports: [
     BrowserModule,
