@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { environment } from '../environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,14 +13,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { FormsModule } from "@angular/forms";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyCqtuK_ueNOFDhFFM0AL5br2g_GgQnCmV0",
-  authDomain: "myso-ccb72.firebaseapp.com",
-  databaseURL: "https://myso-ccb72.firebaseio.com",
-  projectId: "myso-ccb72",
-  storageBucket: "myso-ccb72.appspot.com",
-  messagingSenderId: "134886238768"
-};
+
 
 @NgModule({
   declarations: [
@@ -34,7 +28,7 @@ const firebaseConfig = {
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule
   ],
   providers: [],
