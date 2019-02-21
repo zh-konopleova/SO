@@ -2,6 +2,7 @@
 
 # environments
 src/environments
+.firebase
 
 # compiled output
 /dist
