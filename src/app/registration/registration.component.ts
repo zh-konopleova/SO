@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from "@angular/forms";
-import { AngularFireAuth } from '@angular/fire/auth';
-import { auth } from 'firebase/app';
+import { AuthService } from '../authorization.service';
 
 @Component({
   selector: 'app-registration',
@@ -11,38 +10,19 @@ import { auth } from 'firebase/app';
 export class RegistrationComponent implements OnInit {
   email;
   password;
+  isAuthenticated = false;
 
-  constructor(public authFire: AngularFireAuth) {}
+  constructor(private authService: AuthService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.isAuthenticated = this.authService.isAuthenticated;
+  }
 
   onSubmit() {
-    this.createUser();
+    this.authService.createUser(this.email, this.password);
   }
 
   onClickGoogle() {
-    this.authFire.auth.signInWithPopup(new auth.GoogleAuthProvider());
-  }
-
-  createUser() {
-    this.authFire.auth
-      .createUserWithEmailAndPassword(this.email ,this.password)
-      .then((data) => {
-        let user = data.user;
-        this.sendVerification(user);
-      })
-      .catch((error) => {
-        alert(error.message);
-      });
-  }
-
-  sendVerification(user) {
-    user.sendEmailVerification()
-      .then((value) => {
-        console.log(value);
-      })
-      .catch((error) => {
-        alert(error.message);
-      });
+    this.authService.logInWithGoogle();
   }
 }

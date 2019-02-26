@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-4">
+      Авторизован: {{ isAuthenticated }}
       <form
         (ngSubmit)="onSubmit()"
         class="mt-5 justify-content-center">
@@ -14,7 +15,7 @@
             id="registration-form__email"
             class="form-control"
             placeholder="Enter email"
-            pattern="[a-zA-Z_]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}"
+            pattern="[a-zA-Z_0-9]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}"
             required>
         </div>
 

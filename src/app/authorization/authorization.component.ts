@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from "@angular/forms";
-import { AngularFireAuth } from '@angular/fire/auth';
-import { auth } from 'firebase/app';
+import { FormsModule } from '@angular/forms';
+import { AuthService } from '../authorization.service';
 
 @Component({
   selector: 'app-authorization',
@@ -12,22 +11,16 @@ export class AuthorizationComponent implements OnInit {
   email;
   password;
 
-  constructor(public authFire: AngularFireAuth) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {}
 
   onSubmit() {
-    this.logInUser();
+    this.authService.logInWithEmail(this.email, this.password);
   }
 
-  logInUser() {
-    this.authFire.auth
-      .signInWithEmailAndPassword(this.email, this.password)
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((error) => {
-        alert(error.message);
-      });
+  onClickGoogle() {
+    this.authService.logInWithGoogle();
   }
+
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { auth } from 'firebase/app';
+import { AuthService } from '../authorization.service';
 
 @Component({
   selector: 'app-header',
@@ -8,11 +7,9 @@ import { auth } from 'firebase/app';
   styleUrls: ['./app-header.component.css']
 })
 export class AppHeaderComponent implements OnInit {
-  constructor(public afAuth: AngularFireAuth) {}
+  constructor(public authService: AuthService) {}
 
   ngOnInit() {}
 
-  logout() {
-    this.afAuth.auth.signOut();
-  }
+  logout() {}
 }
