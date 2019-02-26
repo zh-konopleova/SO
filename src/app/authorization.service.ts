@@ -14,14 +14,8 @@ export class AuthService {
   }
 
   logInWithEmail(email, password) {
-    this.authFire.auth
-      .signInWithEmailAndPassword(email, password)
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((error) => {
-        alert(error.message);
-      });
+    return this.authFire.auth
+      .signInWithEmailAndPassword(email, password);
   }
 
   logInWithGoogle() {
@@ -55,11 +49,10 @@ export class AuthService {
   }
 
   get isAuthenticated() {
-    return this.user != undefined;
+    return !!this.user;
   }
 
   get currentUser() {
-    console.log(this.user);
     return this.user;
   }
 }

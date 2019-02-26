@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../authorization.service';
 
@@ -11,12 +12,19 @@ export class AuthorizationComponent implements OnInit {
   email;
   password;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {}
 
   onSubmit() {
-    this.authService.logInWithEmail(this.email, this.password);
+    this.authService.logInWithEmail(this.email, this.password)
+      .then((data) => {
+        alert(`Вы успешно вошли, ${data.user.email}`);
+        this.router.navigate(['/']);
+      })
+      .catch((error) => {
+        alert(error);
+      })
   }
 
   onClickGoogle() {

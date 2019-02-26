@@ -10,13 +10,10 @@ import { AuthService } from '../authorization.service';
 export class RegistrationComponent implements OnInit {
   email;
   password;
-  isAuthenticated = false;
 
   constructor(private authService: AuthService) {}
 
-  ngOnInit() {
-    this.isAuthenticated = this.authService.isAuthenticated;
-  }
+  ngOnInit() {}
 
   onSubmit() {
     this.authService.createUser(this.email, this.password);

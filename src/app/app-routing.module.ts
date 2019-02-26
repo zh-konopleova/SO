@@ -4,11 +4,12 @@ import { QuestionListComponent } from './question-list/question-list.component';
 import { AuthorizationComponent } from './authorization/authorization.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { QuestionComponent } from './question/question.component';
+import { AuthorizationGuard } from './authorization.guard';
 
 const routes: Routes = [
   {path: '', component: QuestionListComponent},
-  {path: 'login', component: AuthorizationComponent},
-  {path: 'signup', component: RegistrationComponent},
+  {path: 'login', component: AuthorizationComponent, canActivate: [AuthorizationGuard]},
+  {path: 'signup', component: RegistrationComponent, canActivate: [AuthorizationGuard]},
   {path: 'question/1', component: QuestionComponent}
 ];
 

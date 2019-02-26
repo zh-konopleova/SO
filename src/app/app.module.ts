@@ -12,7 +12,8 @@ import { QuestionComponent } from './question/question.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { FormsModule } from "@angular/forms";
-
+import { AuthorizationGuard } from './authorization.guard';
+import { AuthService } from './authorization.service';
 
 
 @NgModule({
@@ -31,7 +32,7 @@ import { FormsModule } from "@angular/forms";
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule
   ],
-  providers: [],
+  providers: [AuthService, AuthorizationGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

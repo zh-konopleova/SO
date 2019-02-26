@@ -1,7 +1,7 @@
 <header>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <a class="navbar-brand mr-auto p-2 bd-highlight" routerLink="/">SO</a>
+      <a class="brand navbar-brand mr-auto p-2" routerLink="/">SO</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -14,14 +14,32 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto p-2">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/login">Log in<span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/signup">Sign up</a>
-          </li>
-        </ul>
+        <ng-template #isUnauthenticated>
+          <ul class="navbar-nav ml-auto p-2">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/login">Log in<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/signup">Sign up</a>
+            </li>
+          </ul>
+        </ng-template>
+
+        <div class="if-authorized" *ngIf="authService.isAuthenticated else isUnauthenticated">
+          <div>
+            <div class="if-authorized__name">
+              {{ authService.currentUser.email }}
+            </div>
+          </div>
+          <div>
+            <ul class="navbar-nav ml-auto p-2">
+              <li class="nav-item">
+                <a class="signout__link nav-link" (click)="authService.logOut()">Sign out</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
       </div>
     </div>
   </nav>
