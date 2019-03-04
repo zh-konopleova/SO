@@ -13,7 +13,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { FormsModule } from "@angular/forms";
 import { AuthorizationGuard } from './authorization.guard';
-import { AuthService } from './authorization.service';
+import { AuthService } from './auth.service';
 
 
 @NgModule({

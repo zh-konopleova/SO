@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { auth, User } from 'firebase/app';
+import { User, auth } from 'firebase/app';
 // import { map } from 'rxjs/operators';
 
 @Injectable()
@@ -18,7 +18,7 @@ export class AuthService {
       .signInWithEmailAndPassword(email, password);
   }
 
-  logInWithGoogle() {
+  logInWithGoogle(): void {
     this.authFire.auth.signInWithPopup(new auth.GoogleAuthProvider());
   }
 
@@ -35,7 +35,7 @@ export class AuthService {
     this.authFire.auth.signOut();
   }
 
-  get isAuthenticated() {
+  get isAuthenticated(): boolean {
     return !!this.user;
   }
 
