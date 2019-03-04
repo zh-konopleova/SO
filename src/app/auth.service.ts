@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { User, auth } from 'firebase/app';
-// import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 
 @Injectable()
 export class AuthService {
-  private user: User;
+  user: Observable<firebase.User>;
 
-  constructor(public authFire: AngularFireAuth) {
-    authFire.user.subscribe((user) => {
-      this.user = user;
-    });
+  constructor(private authFire: AngularFireAuth) {
+    this.user = authFire.authState;
   }
 
   logInWithEmail(email, password) {
@@ -34,12 +34,8 @@ export class AuthService {
   logOut() {
     this.authFire.auth.signOut();
   }
-
-  get isAuthenticated(): boolean {
-    return !!this.user;
-  }
-
-  get currentUser() {
-    return this.user;
-  }
+  //
+  // get isAuthenticated(): Observable<boolean> {
+  //   return this.user.pipe(map(user => !!user));
+  // }
 }

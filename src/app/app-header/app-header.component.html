@@ -25,10 +25,10 @@
           </ul>
         </ng-template>
 
-        <div class="if-authorized" *ngIf="authService.isAuthenticated else isUnauthenticated">
+        <div class="if-authorized" *ngIf="authService.user | async else isUnauthenticated">
           <div>
             <div class="if-authorized__name">
-              {{ authService.currentUser.email }}
+              {{ authService.user.email }}
             </div>
           </div>
           <div>
