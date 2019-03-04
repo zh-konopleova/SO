@@ -11,9 +11,12 @@ import { RegistrationComponent } from './registration/registration.component';
 import { QuestionComponent } from './question/question.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FormsModule } from "@angular/forms";
 import { AuthorizationGuard } from './authorization.guard';
 import { AuthService } from './auth.service';
+import { QuestionFormComponent } from './question-form/question-form.component';
+import { QuestionService } from './question.service';
 
 
 @NgModule({
@@ -23,16 +26,18 @@ import { AuthService } from './auth.service';
     QuestionListComponent,
     AuthorizationComponent,
     RegistrationComponent,
-    QuestionComponent
+    QuestionComponent,
+    QuestionFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFirestoreModule
   ],
-  providers: [AuthService, AuthorizationGuard],
+  providers: [AuthService, AuthorizationGuard, QuestionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

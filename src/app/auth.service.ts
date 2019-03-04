@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 
 @Injectable()
 export class AuthService {
-  user: Observable<firebase.User>;
+  user: Observable<User>;
 
   constructor(private authFire: AngularFireAuth) {
     this.user = authFire.authState;

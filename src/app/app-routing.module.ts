@@ -5,12 +5,15 @@ import { AuthorizationComponent } from './authorization/authorization.component'
 import { RegistrationComponent } from './registration/registration.component';
 import { QuestionComponent } from './question/question.component';
 import { AuthorizationGuard } from './authorization.guard';
+import { QuestionFormComponent } from './question-form/question-form.component';
+
 
 const routes: Routes = [
   {path: '', component: QuestionListComponent},
   {path: 'login', component: AuthorizationComponent, canActivate: [AuthorizationGuard]},
   {path: 'signup', component: RegistrationComponent},
-  {path: 'question/1', component: QuestionComponent}
+  {path: 'question/1', component: QuestionComponent},
+  {path: 'question-form', component: QuestionFormComponent}
 ];
 
 @NgModule({

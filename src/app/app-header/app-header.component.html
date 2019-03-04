@@ -26,9 +26,10 @@
         </ng-template>
 
         <div class="if-authorized" *ngIf="authService.user | async else isUnauthenticated">
+          <a class="btn btn-primary pr-5 pl-5" routerLink="/question-form">Задать вопрос</a>
           <div>
             <div class="if-authorized__name">
-              {{ authService.user.email }}
+              {{ authService.user.email | async }}
             </div>
           </div>
           <div>
