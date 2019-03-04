@@ -9,7 +9,7 @@ import { AuthorizationGuard } from './authorization.guard';
 const routes: Routes = [
   {path: '', component: QuestionListComponent},
   {path: 'login', component: AuthorizationComponent, canActivate: [AuthorizationGuard]},
-  {path: 'signup', component: RegistrationComponent, canActivate: [AuthorizationGuard]},
+  {path: 'signup', component: RegistrationComponent},
   {path: 'question/1', component: QuestionComponent}
 ];
 

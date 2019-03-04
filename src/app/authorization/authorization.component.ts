@@ -24,7 +24,7 @@ export class AuthorizationComponent implements OnInit {
       })
       .catch((error) => {
         alert(error);
-      })
+      });
   }
 
   onClickGoogle() {

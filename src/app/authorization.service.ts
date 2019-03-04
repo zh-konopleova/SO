@@ -23,25 +23,12 @@ export class AuthService {
   }
 
   createUser(email, password) {
-    this.authFire.auth
-      .createUserWithEmailAndPassword(email ,password)
-      .then((data) => {
-        let user = data.user;
-        this.sendVerification(user);
-      })
-      .catch((error) => {
-        alert(error.message);
-      });
+    return this.authFire.auth
+      .createUserWithEmailAndPassword(email ,password);
   }
 
-  sendVerification(user) {
-    user.sendEmailVerification()
-      .then((value) => {
-        console.log(value);
-      })
-      .catch((error) => {
-        alert(error.message);
-      });
+  sendEmailVerification(user) {
+    return user.sendEmailVerification()
   }
 
   logOut() {
