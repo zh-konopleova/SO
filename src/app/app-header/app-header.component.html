@@ -27,18 +27,15 @@
 
         <div class="if-authorized" *ngIf="authService.user | async else isUnauthenticated">
           <a class="btn btn-primary pr-5 pl-5" routerLink="/question-form">Задать вопрос</a>
-          <div>
-            <div class="if-authorized__name">
-              {{ authService.user.email | async }}
-            </div>
-          </div>
-          <div>
-            <ul class="navbar-nav ml-auto p-2">
-              <li class="nav-item">
-                <a class="signout__link nav-link" (click)="authService.logOut()">Sign out</a>
-              </li>
-            </ul>
-          </div>
+
+          <ul class="navbar-nav ml-auto p-2">
+            <li class="nav-item">
+              <a class="nav-link">{{ (authService.user | async)?.email }}</a>
+            </li>
+            <li class="nav-item">
+              <a class="signout__link nav-link" (click)="authService.logOut()">Sign out</a>
+            </li>
+          </ul>
         </div>
 
       </div>

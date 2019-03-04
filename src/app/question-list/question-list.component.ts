@@ -7,8 +7,11 @@ import{ QuestionService } from '../question.service';
   styleUrls: ['./question-list.component.css']
 })
 export class QuestionListComponent implements OnInit {
+  questionList;
+
   constructor(private questionService: QuestionService) { }
 
-  ngOnInit() {}
-
+  ngOnInit(): void {
+    this.questionList = this.questionService.getQuestions();
+  }
 }
