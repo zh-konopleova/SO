@@ -2,12 +2,11 @@
   <div class="row">
     <div class="col col-md-8">
       <div class="d-flex w-100 justify-content-between mt-4">
-        <h1 class="mb-1">Why it doesn't work?</h1>
+        <h1 class="mb-1">{{ (question | async)?.title }}</h1>
         <small>3 days ago</small>
       </div>
       <p class="mb-1">
-        Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.
-        Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.
+        {{ (question | async)?.description }}
       </p>
       <small>Josh Mul</small>
 

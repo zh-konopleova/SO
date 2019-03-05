@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute} from '@angular/router';
+import{ QuestionService } from '../question.service';
 
 @Component({
   selector: 'app-question',
@@ -6,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./question.component.css']
 })
 export class QuestionComponent implements OnInit {
+  question;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private questionService: QuestionService, private activateRoute: ActivatedRoute) {
+    let id = this.activateRoute.snapshot.params['id'];
+    this.question = this.questionService.get(id);
   }
 
+  ngOnInit(): void {}
 }

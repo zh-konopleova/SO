@@ -13,7 +13,8 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FormsModule } from "@angular/forms";
-import { AuthorizationGuard } from './authorization.guard';
+import { AuthGuard } from './auth.guard';
+import { UnauthGuard } from './unauth.guard';
 import { AuthService } from './auth.service';
 import { QuestionFormComponent } from './question-form/question-form.component';
 import { QuestionService } from './question.service';
@@ -37,7 +38,7 @@ import { QuestionService } from './question.service';
     AngularFireAuthModule,
     AngularFirestoreModule
   ],
-  providers: [AuthService, AuthorizationGuard, QuestionService],
+  providers: [AuthService, AuthGuard, UnauthGuard, QuestionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

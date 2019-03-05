@@ -16,6 +16,6 @@ export class QuestionFormComponent implements OnInit {
   ngOnInit() {}
 
   onSubmit(): void {
-    this.questionService.createQuestion(this.title, this.description);
+    this.questionService.create(this.title, this.description);
   }
 }
