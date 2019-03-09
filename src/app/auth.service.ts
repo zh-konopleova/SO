@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { User, auth } from 'firebase/app';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { from } from 'rxjs';
 
 
 @Injectable()
@@ -13,29 +14,23 @@ export class AuthService {
     this.user = authFire.authState;
   }
 
-  logInWithEmail(email, password) {
-    return this.authFire.auth
-      .signInWithEmailAndPassword(email, password);
+  logInWithEmail(email, password): Observable<any> {
+    return from(this.authFire.auth.signInWithEmailAndPassword(email, password));
   }
 
   logInWithGoogle(): void {
     this.authFire.auth.signInWithPopup(new auth.GoogleAuthProvider());
   }
 
-  createUser(email, password) {
-    return this.authFire.auth
-      .createUserWithEmailAndPassword(email ,password);
+  createUser(email, password): Observable<any> {
+    return from(this.authFire.auth.createUserWithEmailAndPassword(email ,password));
   }
 
-  sendEmailVerification(user) {
-    return user.sendEmailVerification()
+  sendEmailVerification(user): void {
+    user.sendEmailVerification()
   }
 
-  logOut() {
+  logOut(): void {
     this.authFire.auth.signOut();
   }
-  //
-  // get isAuthenticated(): Observable<boolean> {
-  //   return this.user.pipe(map(user => !!user));
-  // }
 }

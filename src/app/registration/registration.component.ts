@@ -17,20 +17,16 @@ export class RegistrationComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(): void {
-    this.authService
-      .createUser(this.email, this.password)
-      .then((data) => {
-        let user = data.user;
+    this.authService.createUser(this.email, this.password)
+      .subscribe(
+        (data) => {
+          this.authService.sendEmailVerification(data.user);
+          alert(`На ${data.user.email} было отправлено письмо с подтверждением.`);
 
-        this.authService.sendEmailVerification(user)
-          .then(() => {
-            alert(`На ${user.email} было отправлено письмо с подтверждением.`);
-            this.router.navigate(['/']);
-          });
-      })
-      .catch((error) => {
-        alert(error);
-      });
+          this.router.navigate(['/']);
+        },
+        (error) => alert(error)
+      );
   }
 
   onClickGoogle(): void {

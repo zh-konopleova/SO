@@ -13,7 +13,7 @@ export class QuestionFormComponent implements OnInit {
 
   constructor(private questionService: QuestionService) { }
 
-  ngOnInit() {}
+  ngOnInit(): void {}
 
   onSubmit(): void {
     this.questionService.create(this.title, this.description);
