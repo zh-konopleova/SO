@@ -2,6 +2,7 @@
   <div class="row">
     <div class="col-12 col-sm-12 col-md-9">
       <div class="list-group mt-5 mb-5">
+        <app-spinner *ngIf="isLoading"></app-spinner>
         <a [routerLink]="['question', question.id]"
           class="list-group-item list-group-item-action mb-3"
           *ngFor="let question of questionList | async">

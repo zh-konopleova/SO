@@ -9,10 +9,12 @@ import{ QuestionService } from '../question.service';
 })
 export class QuestionComponent implements OnInit {
   question;
+  isLoading: boolean = true;
 
   constructor(private questionService: QuestionService, private activateRoute: ActivatedRoute) {
     let id = this.activateRoute.snapshot.params['id'];
     this.question = this.questionService.get(id);
+    this.question.subscribe(() => this.isLoading = false);
   }
 
   ngOnInit(): void {}

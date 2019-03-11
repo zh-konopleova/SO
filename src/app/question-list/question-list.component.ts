@@ -8,10 +8,12 @@ import{ QuestionService } from '../question.service';
 })
 export class QuestionListComponent implements OnInit {
   questionList;
+  isLoading: boolean = true;
 
   constructor(private questionService: QuestionService) { }
 
   ngOnInit(): void {
     this.questionList = this.questionService.getAll();
+    this.questionService.getAll().subscribe(() => this.isLoading = false);
   }
 }

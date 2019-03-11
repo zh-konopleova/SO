@@ -18,6 +18,7 @@ import { UnauthGuard } from './unauth.guard';
 import { AuthService } from './auth.service';
 import { QuestionFormComponent } from './question-form/question-form.component';
 import { QuestionService } from './question.service';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { QuestionService } from './question.service';
     AuthorizationComponent,
     RegistrationComponent,
     QuestionComponent,
-    QuestionFormComponent
+    QuestionFormComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
