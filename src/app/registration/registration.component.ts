@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import { FormsModule } from "@angular/forms";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -9,27 +9,44 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
-  email: string;
-  password: string;
+  error: string;
+
+  form: FormGroup = new FormGroup({
+    email: new FormControl('',[
+      Validators.required,
+      Validators.email
+    ]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(6)
+    ])
+  });
 
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {}
 
   onSubmit(): void {
-    this.authService.createUser(this.email, this.password)
+    let email = this.form.get('email').value,
+        password = this.form.get('password').value;
+
+    this.authService.createUser(email, password)
       .subscribe(
         (data) => {
           this.authService.sendEmailVerification(data.user);
-          alert(`На ${data.user.email} было отправлено письмо с подтверждением.`);
 
-          this.router.navigate(['/']);
+          this.router.navigate(['/'])
+          this.form.reset();
         },
-        (error) => alert(error)
+        (error) => { this.error = error }
       );
   }
 
   onClickGoogle(): void {
     this.authService.logInWithGoogle();
+  }
+
+  isControlValid(control: string) {
+    return this.form.controls[control].valid;
   }
 }

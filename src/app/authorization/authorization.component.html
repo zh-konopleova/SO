@@ -1,40 +1,46 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-4 mt-5">
-      <h3 class="text-center">Authorization</h3>
+      <h1 class="text-center mb-4">Authorization</h1>
+
+      <div
+        class="alert alert-danger"
+        *ngIf="error">
+        {{ error }}
+      </div>
+
       <form
         (ngSubmit)="onSubmit()"
-        class="mt-5 justify-content-center">
+        [formGroup]="form"
+        class="justify-content-center">
         <div class="form-group">
           <label for="registration-form__email">Email:</label>
           <input
-            [(ngModel)]="email"
-            #emailInput="ngModel"
+            formControlName="email"
             name="email"
             type="email"
             id="registration-form__email"
             class="form-control"
-            placeholder="Enter email"
-            pattern="[a-zA-Z_0-9]+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}"
-            required>
+            [ngClass]="{'is-valid': isControlValid('email')}"
+            placeholder="Enter email">
         </div>
 
         <div class="form-group">
           <label for="registration-form__password">Password:</label>
           <input
-            [(ngModel)]="password"
+            formControlName="password"
             name="password"
             type="password"
             id="registration-form__password"
             class="form-control"
-            placeholder="Password"
-            minlength="6"
-            required>
+            [ngClass]="{'is-valid': isControlValid('password')}"
+            placeholder="Password">
         </div>
 
         <button
           type="submit"
-          class="btn btn-block btn-primary mt-3 px-5">Log in</button>
+          class="btn btn-block btn-primary mt-3 px-5"
+          [disabled]="!form.valid">Log in</button>
       </form>
 
       <hr>

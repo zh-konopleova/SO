@@ -12,7 +12,7 @@ import { QuestionComponent } from './question/question.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AuthGuard } from './auth.guard';
 import { UnauthGuard } from './unauth.guard';
 import { AuthService } from './auth.service';
@@ -36,6 +36,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule
