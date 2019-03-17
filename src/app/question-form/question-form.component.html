@@ -1,26 +1,32 @@
 <div class="container">
   <div class="col-12 col-sm-12 col-md-9">
-    <form class="mt-5" (ngSubmit)="onSubmit()">
+    <form
+      class="mt-5"
+      [formGroup]="form"
+      (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <label for="exampleFormControlInput1">Заголовок</label>
+        <label for="exampleFormControlInput1">Title:</label>
         <input type="text"
           class="form-control"
+          [ngClass]="{'is-valid': isControlValid('title')}"
           id="exampleFormControlInput1"
           name="title"
-          [(ngModel)]="title"
-          >
+          formControlName="title">
       </div>
       <div class="form-group">
-        <label for="exampleFormControlTextarea1">Описание</label>
+        <label for="exampleFormControlTextarea1">Description:</label>
         <textarea
           class="form-control"
+          [ngClass]="{'is-valid': isControlValid('description')}"
           id="exampleFormControlTextarea1"
           rows="5"
           name="description"
-          [(ngModel)]="description"
-          ></textarea>
+          formControlName="description"></textarea>
       </div>
-      <button type="submit" name="button" class="btn btn-primary">Отправить вопрос</button>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!form.valid">Send question</button>
     </form>
   </div>
 </div>

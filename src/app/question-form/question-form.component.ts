@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Router } from "@angular/router";
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import{ QuestionService } from '../question.service';
+
+import { Question } from '../question.model';
+
 
 @Component({
   selector: 'app-question-form',
@@ -8,14 +12,28 @@ import{ QuestionService } from '../question.service';
   styleUrls: ['./question-form.component.css']
 })
 export class QuestionFormComponent implements OnInit {
-  title: string;
-  description: string;
+  form: FormGroup = new FormGroup({
+    title: new FormControl('', [
+      Validators.required
+    ]),
+    description: new FormControl('', [
+      Validators.required
+    ])
+  });
 
-  constructor(private questionService: QuestionService) { }
+  constructor(private questionService: QuestionService, private router: Router) { }
 
   ngOnInit(): void {}
 
   onSubmit(): void {
-    this.questionService.create(this.title, this.description);
+    let question = new Question().deserialize(this.form.value);
+    this.questionService.create(question);
+
+    this.form.reset();
+    this.router.navigate(['/']);
+  }
+
+  isControlValid(control: string) {
+    return this.form.controls[control].valid;
   }
 }

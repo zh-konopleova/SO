@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import{ QuestionService } from '../question.service';
+import { Observable } from 'rxjs';
+
+import { Question } from '../question.model';
+
 
 @Component({
   selector: 'app-question-list',
@@ -7,7 +11,7 @@ import{ QuestionService } from '../question.service';
   styleUrls: ['./question-list.component.css']
 })
 export class QuestionListComponent implements OnInit {
-  questionList;
+  questionList: Observable<Question[]>;
   isLoading: boolean = true;
 
   constructor(private questionService: QuestionService) { }
