@@ -20,12 +20,14 @@ export class AdminComponent implements OnInit {
     this.questionService.getAll().subscribe(() => this.isLoading = false);
   }
 
-  approveQuestion() {
-    alert('approve');
+  approve(question) {
+    question.status = 'approved';
+    this.questionService.update(question);
   }
 
-  rejectQuestion() {
-    alert('reject');
+  reject(question) {
+    question.status = 'rejected';
+    this.questionService.update(question);
   }
 
 }

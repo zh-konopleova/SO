@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import{ QuestionService } from '../question.service';
+import { QuestionService } from '../question.service';
 import { Observable } from 'rxjs';
 
 import { Question } from '../question.model';
@@ -33,7 +33,7 @@ export class QuestionComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onSubmit() {
+  onSubmit(): void {
     let answer = this.form.get('answer').value;
     this.question.answers.push(answer);
     this.form.reset();
@@ -41,7 +41,7 @@ export class QuestionComponent implements OnInit {
     this.questionService.update(this.question);
   }
 
-  isControlValid(control: string) {
+  isControlValid(control: string): boolean {
     return this.form.controls[control].valid;
   }
 }
