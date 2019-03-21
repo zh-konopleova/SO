@@ -19,6 +19,7 @@ import { AuthService } from './auth.service';
 import { QuestionFormComponent } from './question-form/question-form.component';
 import { QuestionService } from './question.service';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { AdminComponent } from './admin/admin.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
     RegistrationComponent,
     QuestionComponent,
     QuestionFormComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

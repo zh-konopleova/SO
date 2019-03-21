@@ -4,20 +4,28 @@ import { Observable } from 'rxjs';
 
 import { Question } from '../question.model';
 
-
 @Component({
-  selector: 'app-question-list',
-  templateUrl: './question-list.component.html',
-  styleUrls: ['./question-list.component.css']
+  selector: 'app-admin',
+  templateUrl: './admin.component.html',
+  styleUrls: ['./admin.component.css']
 })
-export class QuestionListComponent implements OnInit {
-  questionList: Observable<Question[]>;
+export class AdminComponent implements OnInit {
+  adminQuestionList: Observable<Question[]>;
   isLoading: boolean = true;
 
   constructor(private questionService: QuestionService) { }
 
   ngOnInit(): void {
-    this.questionList = this.questionService.getAll();
+    this.adminQuestionList = this.questionService.getAll();
     this.questionService.getAll().subscribe(() => this.isLoading = false);
   }
+
+  approveQuestion() {
+    alert('approve');
+  }
+
+  rejectQuestion() {
+    alert('reject');
+  }
+
 }

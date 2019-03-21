@@ -7,6 +7,7 @@ import { QuestionComponent } from './question/question.component';
 import { AuthGuard } from './auth.guard';
 import { UnauthGuard } from './unauth.guard';
 import { QuestionFormComponent } from './question-form/question-form.component';
+import { AdminComponent } from './admin/admin.component';
 
 
 const routes: Routes = [
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path: 'login', component: AuthorizationComponent, canActivate: [AuthGuard]},
   {path: 'signup', component: RegistrationComponent, canActivate: [AuthGuard]},
   {path: 'question/:id', component: QuestionComponent},
-  {path: 'question-form', component: QuestionFormComponent, canActivate: [UnauthGuard]}
+  {path: 'question-form', component: QuestionFormComponent, canActivate: [UnauthGuard]},
+  {path: 'admin', component: AdminComponent}
 ];
 
 @NgModule({

@@ -9,8 +9,12 @@ import { Question } from './question.model';
 export class QuestionService {
   constructor(private db: AngularFirestore) {}
 
-  create(question: Question){
+  create(question: Question): void {
     this.db.collection('questions').add(question.serialize());
+  }
+
+  update(question: Question): void {
+    this.db.collection('questions').doc(question.id).update(question.serialize());
   }
 
   getAll(): Observable<Question[]> {
