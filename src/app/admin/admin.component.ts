@@ -16,8 +16,8 @@ export class AdminComponent implements OnInit {
   constructor(private questionService: QuestionService) { }
 
   ngOnInit(): void {
-    this.adminQuestionList = this.questionService.getAll();
-    this.questionService.getAll().subscribe(() => this.isLoading = false);
+    this.adminQuestionList = this.questionService.getInitialAll();
+    this.questionService.getInitialAll().subscribe(() => this.isLoading = false);
   }
 
   approve(question) {

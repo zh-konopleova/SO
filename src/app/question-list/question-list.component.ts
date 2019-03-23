@@ -17,7 +17,7 @@ export class QuestionListComponent implements OnInit {
   constructor(private questionService: QuestionService) { }
 
   ngOnInit(): void {
-    this.questionList = this.questionService.getAll();
-    this.questionService.getAll().subscribe(() => this.isLoading = false);
+    this.questionList = this.questionService.getApprovedAll();
+    this.questionService.getApprovedAll().subscribe(() => this.isLoading = false);
   }
 }

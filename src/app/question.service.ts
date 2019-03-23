@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject, combineLatest } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 import { Question } from './question.model';
 
 @Injectable()
 export class QuestionService {
-  constructor(private db: AngularFirestore) {}
+
+  constructor(private db: AngularFirestore) {
+  }
 
   create(question: Question): void {
     this.db.collection('questions').add(question.serialize());
@@ -28,6 +31,26 @@ export class QuestionService {
       }),
       map((questions) => {
         return questions.map((question) => new Question().deserialize(question));
+      })
+    );
+  }
+
+  getInitialAll(): Observable<Question[]> {
+    return this.getAll().pipe(
+      map(questions => {
+        return questions.filter(question => {
+          return question.status === 'initial' || null;
+        })
+      })
+    )
+  }
+
+  getApprovedAll(): Observable<Question[]> {
+    return this.getAll().pipe(
+      map(questions => {
+        return questions.filter(question => {
+          return question.status === 'approved';
+        })
       })
     );
   }
