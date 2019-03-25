@@ -14,7 +14,8 @@
 
       <form
         [formGroup]="form"
-        (ngSubmit)="onSubmit()">
+        (ngSubmit)="onSubmit()"
+        *ngIf="authService.user | async else isUnauthenticated">
         <div class="form-group">
           <label for="answer-form__input">Your answer</label>
           <textarea

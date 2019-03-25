@@ -20,6 +20,7 @@ import { QuestionFormComponent } from './question-form/question-form.component';
 import { QuestionService } from './question.service';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { AdminComponent } from './admin/admin.component';
+import { TagsComponent } from './tags/tags.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { AdminComponent } from './admin/admin.component';
     QuestionComponent,
     QuestionFormComponent,
     SpinnerComponent,
-    AdminComponent
+    AdminComponent,
+    TagsComponent
   ],
   imports: [
     BrowserModule,

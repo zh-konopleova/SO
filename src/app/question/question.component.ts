@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { QuestionService } from '../question.service';
+import { AuthService } from '../auth.service';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { Question } from '../question.model';
 
@@ -22,7 +24,7 @@ export class QuestionComponent implements OnInit {
     ])
   });
 
-  constructor(private questionService: QuestionService, private activateRoute: ActivatedRoute) {
+  constructor(private questionService: QuestionService, private authService: AuthService, private activateRoute: ActivatedRoute) {
     let id = this.activateRoute.snapshot.params['id'];
 
     this.questionService.get(id).subscribe((question) => {
@@ -44,4 +46,9 @@ export class QuestionComponent implements OnInit {
   isControlValid(control: string): boolean {
     return this.form.controls[control].valid;
   }
+
+//   isEnabledAnswer(): boolean {
+//     return this.form.valid && !!this.authService.isAuthUser().subscribe(() => this.user);
+//   }
+//
 }

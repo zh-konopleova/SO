@@ -4,6 +4,8 @@ import { User, auth } from 'firebase/app';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { from } from 'rxjs';
+import { first, tap } from 'rxjs/operators';
+
 
 
 @Injectable()
@@ -33,4 +35,31 @@ export class AuthService {
   logOut(): void {
     this.authFire.auth.signOut();
   }
+
+  isLoggedIn() {
+   return this.authFire.authState.pipe(first())
+}
+
+  isAuthUser() {
+    this.isLoggedIn().pipe(
+      tap(user => {
+        if (user) {
+          return true;
+        } else {
+          return false
+        }
+      })
+    )
+    .subscribe()
+  }
+  // isAuthUser(): Observable<boolean> {
+  //   return this.user.pipe(map((user) => {
+  //     if (user) {
+  //       return true;
+  //     }
+  //     return false;
+  //   }));
+  // }
+
+
 }
