@@ -16,7 +16,7 @@ const routes: Routes = [
   {path: 'signup', component: RegistrationComponent, canActivate: [AuthGuard]},
   {path: 'question/:id', component: QuestionComponent},
   {path: 'question-form', component: QuestionFormComponent, canActivate: [UnauthGuard]},
-  {path: 'admin', component: AdminComponent}
+  {path: 'admin', component: AdminComponent, canActivate: [UnauthGuard]}
 ];
 
 @NgModule({
