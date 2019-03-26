@@ -32,4 +32,8 @@ export class Question {
 
     return this;
   }
+
+  static compare(a: Question, b: Question) {
+    return b.createdAt - a.createdAt;
+  }
 }

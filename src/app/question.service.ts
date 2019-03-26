@@ -21,7 +21,8 @@ export class QuestionService {
   }
 
   getAll(): Observable<Question[]> {
-    return this.db.collection('questions').snapshotChanges().pipe(
+    return this.db.collection('questions').snapshotChanges()
+    .pipe(
       map(actions => {
         return actions.map(a => {
           const data = a.payload.doc.data();
@@ -31,6 +32,9 @@ export class QuestionService {
       }),
       map((questions) => {
         return questions.map((question) => new Question().deserialize(question));
+      }),
+      map((questions) => {
+        return questions.sort(Question.compare)
       })
     );
   }
