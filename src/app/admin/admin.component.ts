@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { QuestionService } from '../question.service';
+import { AuthService } from '../auth.service';
 import { Observable } from 'rxjs';
 
 import { Question } from '../question.model';
@@ -13,7 +14,7 @@ export class AdminComponent implements OnInit {
   adminQuestionList: Observable<Question[]>;
   isLoading: boolean = true;
 
-  constructor(private questionService: QuestionService) { }
+  constructor(private questionService: QuestionService, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.adminQuestionList = this.questionService.getInitialAll();

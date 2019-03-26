@@ -52,14 +52,12 @@ export class AuthService {
     )
     .subscribe()
   }
-  // isAuthUser(): Observable<boolean> {
-  //   return this.user.pipe(map((user) => {
-  //     if (user) {
-  //       return true;
-  //     }
-  //     return false;
-  //   }));
-  // }
 
+  // isAdmin() {
+  //   this.authFire.authState.subscribe(user => {
+  //     if(user.email === 'konopleova@gmail.com')
+  //       return true;
+  //   })
+  // }
 
 }
